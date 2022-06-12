@@ -5,3 +5,5 @@ from django.contrib.auth import login, authenticate
 
 
 
+def Home(request):
+    return render(request, 'award/home.html')
