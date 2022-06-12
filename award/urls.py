@@ -1,5 +1,6 @@
 from django.urls import path
+from award import views
 
 urlpatterns = [
-    path(''),
+    path('', views.Home, name='home'),
 ]
