@@ -11,4 +11,5 @@
 <p>{{post.date}}</p>
 <p>{{post.image}}</p>
 {% if post.image %}
-<img src="{{post.image.url}}" alt="" height="500"> {% endif %} {% endfor %} {% endblock %}
+
+<img src="{{ post.image.url }}" alt="" height="500"> {% endif %} {% endfor %} {% endblock %}
