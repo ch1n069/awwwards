@@ -1,3 +1,28 @@
-h2 {
-    color: rgb(0, 195, 255)
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+}
+
+.one {
+    background-color: rgb(197, 35, 162);
+    background-image: url('https://images.pexels.com/photos/1630344/pexels-photo-1630344.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.two {
+    background-color: rgb(5, 8, 167);
+}
+
+.three {
+    background-color: rgb(31, 218, 71);
 }
