@@ -10,7 +10,7 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField() 
     url = models.URLField(blank=True)
-    image = models.ImageField(null=False, upload_to="images")
+    image = models.ImageField(null=True, upload_to="images")
     date = models.DateTimeField(auto_now_add=True, null=True)
 
 
