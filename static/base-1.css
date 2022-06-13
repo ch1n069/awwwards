@@ -9,11 +9,12 @@
     color: black
 }
 
-.container-1 {
+
+/* .container-1 {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     height: 100vh;
-}
+} */
 
 #navbarNav ul a {
     color: rgb(0, 0, 0);

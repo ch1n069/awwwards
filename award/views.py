@@ -16,6 +16,9 @@ class Home(ListView):
     model = Project
 
 
+
+
+
     template_name = 'award/home.html'
 
     success_url = reverse_lazy('home')
