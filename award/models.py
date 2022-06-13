@@ -11,3 +11,8 @@ class Project(models.Model):
     description = models.TextField() 
     url = models.URLField(blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True)
+
+
+
+    def __str__(self):
+        return self.title 
