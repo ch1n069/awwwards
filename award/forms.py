@@ -1,5 +1,5 @@
 from django import forms 
-from award.models  import Project 
+from award.models  import Project , Rating
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -47,3 +47,11 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['title', 'description', 'image', 'url']
+
+
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating 
+        fields = ['design_rate', 'userbility_rate', 'content_rate']
+        

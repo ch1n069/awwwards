@@ -16,6 +16,7 @@
                 </div>
 
                 {{post.user}}
+                <a href="{% url 'vote' %}" class="btn btn-primary btn-sm">vote</a>
 
             </div>
         </div>
@@ -34,4 +35,4 @@
 
 
 
-<img src="" alt="" height="500"> {% endblock %}
+<img src="" alt="" height="500"> {{user.username}} {% endblock %}

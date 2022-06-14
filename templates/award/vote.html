@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block title %}{% endblock %}{% block content %}
+<form action="{% url 'vote' %}" method=POST>
+    {% csrf_token %} {{form.as_p}}
+    <button>vote</button>
+</form>
+{% endblock %}

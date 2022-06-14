@@ -31,11 +31,22 @@ class Project(models.Model):
 # rating models
 
 class Rating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    Project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE ,related_name='rater')
+    Project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='project')
     design_rate = models.IntegerField(default=0, null=True, blank=True)
     userbility_rate = models.IntegerField(default=0, null=True, blank=True) 
     content_rate = models.IntegerField(default=0, null=True, blank=True)
     avg_rate = models.IntegerField(default=0, null=True, blank=True)
 
 
+
+# profile model
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_photo = models.ImageField(upload_to='profile' , default='default.png')
+    email = models.CharField(max_length=100, blank =True, null=True)
+    bio = models.TextField(max_length=200,  blank=True , null=True)
+
+    def __str__(self):
+        return self.user
