@@ -23,7 +23,7 @@ from decouple import config,Csv
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
-# development
+
 if config('MODE')=="dev":
    DATABASES = {
        'default': {
@@ -57,12 +57,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gz$5_movhsdfwx6yye1!k@2gdzak8q0^ww9w!z8l0$!bg+222_'
+# SECRET_KEY = 'django-insecure-gz$5_movhsdfwx6yye1!k@2gdzak8q0^ww9w!z8l0$!bg+222_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  
 
 
 # Application definition
