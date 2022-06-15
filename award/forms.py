@@ -46,7 +46,7 @@ class SignUpForm(UserCreationForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ['title', 'description', 'image', 'url']
+        exclude = ['user']
 
 
 

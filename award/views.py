@@ -2,7 +2,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView , CreateView , DetailView
-from award.models import Project , Rating , Profile
+from award.models import *
 from award.forms import PostForm , SignUpForm , RatingForm
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -65,21 +65,78 @@ def signup(request):
 
     return render(request, 'registration/signup.html', {'form':form})
 
+#project details 
+def project_details(request,post_id):
+
+
+    
+
+    
+    if request.method == 'POST':
+
+        project = Project.objects.get(id=post_id)
+        user = request.user
+            
+        print(request.POST.get('design'))
+        print(request.POST.get('usability'))
+        print(request.POST.get('content'))
+
+        design = request.POST.get('design')
+        usabilty = request.POST.get('usability')
+        content = request.POST.get('content')
+
+
+        avg = (int(design) + int(usabilty)  + int(content) )/3
+
+        all = Rating(design_rate=design,userbility_rate=usabilty, content_rate=content, avg_rate=avg , Project=project, user=user)
+
+        all.save()
+
+        print(int(avg))
+
+    
+    return render(request, 'award/project.html', {"project":project} )
+
+
+def Vote(request, id):
+    if request.method == 'POST':
+
+        project = Project.objects.get(id=id)
+        current_user = request.user
+
+        design_rate= request.POST["design"]
+        userbility_rate = request.POST["userbility"]
+        content_rate = request.POST["content"]
+
+
+        Rating.objects.create(
+            project=project,
+            user = current_user,
+            design_rate=design_rate,
+            userbility_rate=userbility_rate,
+            content_rate = content_rate,
+             avg_rate=round((float(design_rate)+float(userbility_rate)+float(content_rate))/3,2),
+        )
+
+        avg_rating = (int(design_rate)+ int(userbility_rate)+ int(content_rate))/3
+
+
+        project.rate=avg_rating 
+        project.update_project()
+
+        return render(request, "award/vote.html", {"success":"project rated successfully","project":project, "rating":Rating.objects.filter(project)})
+    else:
+        project = Project.object.get(id=id)
+        return render(request, "award/vote.html",{"danger": "Project Rating Failed", "project": project})
 
 
 
-def Vote(request):
-    form = RatingForm()
-    if request.POST():
-        form_valid = RatingForm.is_valid()
-        if form_valid:
-            form_validated = form_valid.save(commit=False)
+
+   
+        
 
 
 
-
-
-    return render (request, 'award/vote.html' , {'form':form})
 
 
 # profile view

@@ -7,6 +7,8 @@ urlpatterns = [
     path('signup/' , views.signup, name="register"),
     path('post/' , views.CreatePostView.as_view(), name="add_post"),
     path('vote/' , views.Vote, name="vote"),
+    path('project/<int:post_id>/' , views.project_details, name="project_details"),
+
     path('profile/', views.Profiles, name="profile"),
 
 

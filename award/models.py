@@ -47,6 +47,7 @@ class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profile' , default='default.png')
     email = models.CharField(max_length=100, blank =True, null=True)
     bio = models.TextField(max_length=200,  blank=True , null=True)
+    
 
     def __str__(self):
         return self.user
