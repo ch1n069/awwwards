@@ -68,15 +68,17 @@ def signup(request):
 #project details 
 def project_details(request,post_id):
 
+    project = Project.objects.filter(id=post_id)
 
-    
 
-    
+
     if request.method == 'POST':
 
-        project = Project.objects.get(id=post_id)
+        project = Project.objects.filter(id=post_id)
+
+
         user = request.user
-            
+     
         print(request.POST.get('design'))
         print(request.POST.get('usability'))
         print(request.POST.get('content'))
@@ -86,16 +88,17 @@ def project_details(request,post_id):
         content = request.POST.get('content')
 
 
-        avg = (int(design) + int(usabilty)  + int(content) )/3
+        avg = float(int(design) + int(usabilty)  + int(content) )/3
+        print(avg)
 
         all = Rating(design_rate=design,userbility_rate=usabilty, content_rate=content, avg_rate=avg , Project=project, user=user)
 
         all.save()
 
         print(int(avg))
+    print(project)
 
-    
-    return render(request, 'award/project.html', {"project":project} )
+    return render(request, 'award/project.html',{"project":project})
 
 
 def Vote(request, id):

@@ -22,6 +22,7 @@ class Project(models.Model):
 
 
 
+
     def get_absolute_url(self):
         return reverse('home', )
 
@@ -44,10 +45,10 @@ class Rating(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_photo = models.ImageField(upload_to='profile' , default='default.png')
+    photo = models.ImageField(default='default.jpg',upload_to='profile' )
     email = models.CharField(max_length=100, blank =True, null=True)
     bio = models.TextField(max_length=200,  blank=True , null=True)
     
 
     def __str__(self):
-        return self.user
+        return f'{self.user.username} Profile'

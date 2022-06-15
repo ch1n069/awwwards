@@ -4,11 +4,11 @@
     <div class="row g-2">
         <div class="col-3">
             <div class="card card-2" style="width: 18rem;">
-                {% if profile.profile_photo %}
-                <img class=" rounded-circle card-img-top " src="{{user.profile.profile_photo.url}}" alt="Card image cap">
-                <hr>{% endif %}
+
+                <img class="rounded-circle card-img-top" src="{{user.profile.photo.url}}" alt="Card image cap">
+                <hr> {{user.profile.photo.url}}
                 <div class="card-body">
-                    <h2 class="card-text">Name : {{user.profile.user}}</h2>
+                    <h2 class="card-text">Name : {{user.username}}</h2>
 
                     <h3> Email : {{user.profile.email}}</h3>
                     <a href="" class="btn btn-warning ">Edit profile</a>
