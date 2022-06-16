@@ -12,6 +12,10 @@ body {
     background-color: #F4F7F6;
 }
 
+#search {
+    width: 120%;
+}
+
 h1 {
     color: red;
 }

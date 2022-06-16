@@ -10,6 +10,8 @@ urlpatterns = [
     path('project/<int:post_id>/' , views.project_details, name="project_details"),
 
     path('profile/', views.Profiles, name="profile"),
+    path('search_projects/', views.search_projects, name="search-projects"),
+
 
 
 

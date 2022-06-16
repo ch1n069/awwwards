@@ -1,18 +1,18 @@
 from django.db.models.signals import post_save 
 from django.contrib.auth.models import User  #acts a the sender if signal
-from django.dispatch import reciever #acts as the reciever
+from django.dispatch import receiver
 from award.models import Profile
 
 
 #creaate user profile
-@reciever(post_save, sender=User)
-def create_profile(sender, instance, created , **kwargs):
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
 
 
-@reciever(post_save, sender=User)
+@receiver(post_save, sender=User)
 def save_profile(sender, instance, created , **kwargs):
    instance.profile.save()
  

@@ -159,3 +159,21 @@ def Profiles(request):
 
 
     return render (request, 'award/profile.html', ctx) 
+
+
+def search_projects(request):
+
+
+    if request.method == 'POST':
+        term = request.POST['searched']
+        # titles = Project.objects.filter(name__icontains=searched)
+        print(term)
+
+        return render(request, 'award/search.html',{'term':term})
+    else:
+
+
+
+
+
+        return render(request, 'award/search.html')

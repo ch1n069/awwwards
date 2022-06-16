@@ -1,26 +1,35 @@
  {% extends 'base-1.html' %}{% block title %}This is the home page{% endblock %}{% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'home.css' %}">
 <section class="one">
-    <h1>section 1</h1>
-</section>
-<div class="container mt-5">
+    <form action="{% url 'search-projects' %}" method="POST">
+        {% csrf_token %}
+        <div id="search" class="input-group rounded ">
+            <input type="search" class="form-control rounded m-1" name="searched" placeholder="Search for projects" aria-label="Search" aria-describedby="search-addon" />
+            <button class="btn btn-outline-secondary text-dark" type="submit">Search</button>
 
-    <div class="row">
+        </div>
+
+    </form>
+
+</section>
+<div class="container mt-5 ">
+
+    <div class="row ">
         {% for post in object_list %}
 
 
-        <div class="col d-flex align-items-stretch m-2">
+        <div class="col d-flex align-items-stretch m-2 ">
 
-            <div class="card" style="width: 22rem;">
-                <img src="{{post.image.url}}" class="card-img-top" alt="..." height="200">
-                <div class="card-body">
+            <div class="card " style="width: 22rem; ">
+                <img src="{{post.image.url}} " class="card-img-top " alt="... " height="200 ">
+                <div class="card-body ">
                     <h4>{{post.title}}</h4>
-                    <span class="label label-success">{{post.date}}</span>
+                    <span class="label label-success ">{{post.date}}</span>
 
                 </div>
 
                 {{post.user}}
-                <a href="{% url 'project_details' post.id %}" class="btn btn-primary btn-sm">post details</a>
+                <a href="{% url 'project_details' post.id %} " class="btn btn-primary btn-sm ">post details</a>
 
             </div>
         </div>
@@ -39,4 +48,4 @@
 
 
 
-<img src="" alt="" height="500"> {{user.username}} {% endblock %}
+<img src=" " alt=" " height="500 "> {{user.username}} {% endblock %}

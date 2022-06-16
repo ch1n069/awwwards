@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block title %}{% endblock %}{% block content %} {% if searched %}
+<h2>you searched for</h2>
+{% else %}
+<h4>you did not search for anything</h4>
+{% for title in titles %}
+<h2>{{title.title}}</h2>{% endfor %} {% endif %}
+
+<h1>you results are</h1>{% endblock %}
