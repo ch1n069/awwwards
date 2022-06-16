@@ -37,7 +37,6 @@ class Rating(models.Model):
     design_rate = models.IntegerField(default=0, null=True, blank=True)
     userbility_rate = models.IntegerField(default=0, null=True, blank=True) 
     content_rate = models.IntegerField(default=0, null=True, blank=True)
-    avg_rate = models.IntegerField(default=0, null=True, blank=True)
 
 
 

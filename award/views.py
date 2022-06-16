@@ -6,11 +6,25 @@ from award.models import *
 from award.forms import PostForm , SignUpForm , RatingForm
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from rest_framework import viewsets
+from .serializers import ProfileSerializer
+
 
 
 
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
+
+
+
+# sserializing the profile model is
+
+# class ProfileViewSet(viewsets.ModelViewSet):
+#     queryset = Profile.objects.all().order_by('user')
+#     serializer_class = ProfileSerializer
+
+
+
 
 # Create your views here.
 
@@ -71,10 +85,15 @@ def project_details(request,post_id):
     project = Project.objects.filter(id=post_id)
 
 
+    rating = Rating.objects.filter(id=project)
+
+
+
 
     if request.method == 'POST':
 
-        project = Project.objects.filter(id=post_id)
+        project = Project.objects.get(id=post_id)
+
 
 
         user = request.user
@@ -84,21 +103,37 @@ def project_details(request,post_id):
         print(request.POST.get('content'))
 
         design = request.POST.get('design')
-        usabilty = request.POST.get('usability')
+        userbility = request.POST.get('usability')
         content = request.POST.get('content')
 
 
-        avg = float(int(design) + int(usabilty)  + int(content) )/3
-        print(avg)
+        new_rate = Rating(user=user, Project=project,design_rate=design, userbility_rate=userbility, content_rate=content)
 
-        all = Rating(design_rate=design,userbility_rate=usabilty, content_rate=content, avg_rate=avg , Project=project, user=user)
+        new_rate.save()
+        # Rating.objects.create(
+        #     Project=project,
+        #     user = user,
+        #     design_rate=design,
+        #     userbility_rate=userbility,
+        #     content_rate = content,
+            # avg_rate=round((float(design_rate)+float(userbility_rate)+float(content_rate))/3,2),
+        # )
 
-        all.save()
 
-        print(int(avg))
-    print(project)
 
-    return render(request, 'award/project.html',{"project":project})
+        # avg = float(int(design) + int(usabilty)  + int(content) )/3
+        # print(avg)
+
+        # all = Rating(design_rate=design,userbility_rate=usabilty, content_rate=content, avg_rate=avg , Project=project, user=user)
+
+        # all.save()
+
+        # print(int(avg))
+        print(project)
+
+        return render(request, 'award/project.html',{"project":project})
+    return render(request, 'award/project.html',{"rating":rating})
+
 
 
 def Vote(request, id):
@@ -118,7 +153,7 @@ def Vote(request, id):
             design_rate=design_rate,
             userbility_rate=userbility_rate,
             content_rate = content_rate,
-             avg_rate=round((float(design_rate)+float(userbility_rate)+float(content_rate))/3,2),
+            avg_rate=round((float(design_rate)+float(userbility_rate)+float(content_rate))/3,2),
         )
 
         avg_rating = (int(design_rate)+ int(userbility_rate)+ int(content_rate))/3
